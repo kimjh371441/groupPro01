@@ -50,25 +50,51 @@ public class Analyzer {
 			}
 		}
 //		송민진 수정 끝
+	
+//		윤철민 시작
 		
+/* [진행부분]하루 지출 목록 전체 입력받아 배열에 저장 (금액 총합)
+			하루 전체 지출목록 출력					*/
+/* [로직구성]
+	 1) 지출한 금액만 저장할 정수형 배열 선언 
+	 	int, MAX_ENTRY
+	 2) 입력된 지출 개수만큼 반복
+	 3) 각 치줄 금액을 누적해 총 지출 금액 연산
+	 4) 출력 - 하루 전체 지출 목록을 출력 println		*/
 		
-		// 여기선 수정
-		// 날짜, 카테고리, 금액 배열 선언
-		int[] dateArray = new int[MAX_ENTRY];
-		int[] catArray = new int[MAX_ENTRY];
+
+		// 총 금액 배열 선언 
 		int[] priceArray = new int[MAX_ENTRY];
+		// 총 지출금액 연산
 		for (int i = 0; i < MAX_ENTRY; i++) {
-			dateArray[i] = spendings[i][0];
-			catArray[i] = spendings[i][1];
-			priceArray[i] = spendings[i][2];
+			priceArray[i] = spendings[i][1];
 		}
-		// 날짜, 카테고리, 금액 배열 출력
-		System.out.println("날짜\n" + Arrays.toString(dateArray));
-		System.out.println("카테고리\n" + Arrays.toString(catArray));
-		System.out.println("금액\n" + Arrays.toString(priceArray));
 		
-		// 저장된 지출 내역 출력
-		System.out.println("지출내역\n" + Arrays.deepToString(spendings));
-		sc.close();
+		int totalSpending = 0;
+			for (int price : priceArray) {
+				totalSpending += price;
+		}
+				
+		// 총 지출금액 출력
+		System.out.println("총 지출금액 : " + totalSpending + "원 입니다.");
+		
+		
+		// 윤철민 끝  
+		
 	}
+
 }
+
+
+		
+
+		
+
+
+
+
+
+
+
+
+
