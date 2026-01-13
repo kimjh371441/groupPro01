@@ -1,6 +1,7 @@
 package groupPro01;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Analyzer {
 	public static void main(String[] args) {
