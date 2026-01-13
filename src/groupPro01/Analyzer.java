@@ -28,14 +28,14 @@ public class Analyzer {
 				break; // 최대 지출 내역 입력 수를 넘는 순간 입력 종료
 			}
 			if (entryCount > 0) { // 처음 입력하는 경우가 아닌 경우
-				System.out.print("추가로 입력하시겠습니까? (YES: 1, NO: 2) :");
+				System.out.print("추가로 입력하시겠습니까? (1: YES, 2: NO) : ");
 			} else { // 처음 입력하는 경우
-				System.out.print("메뉴 선택 (1. 소비내역 입력, 2. 프로그램 종료 및 분석) : ");
+				System.out.print("메뉴 선택 (1:소비내역 입력, 2:프로그램 종료 및 분석) : ");
 			}
 			int option = sc.nextInt(); // 메뉴 선택을 위한 변수
 			switch(option) { // 1번: 입력, 2번: 입력 종료
 			case 1: // 1번: 입력
-				System.out.print("카테고리 입력 (1.식비, 2.교통, 3.쇼핑, 4.기타) : ");
+				System.out.print("카테고리 입력 (1:식비, 2:교통, 3:쇼핑, 4:기타) : ");
 				spendings[entryCount][0] = sc.nextInt();
 				System.out.print("금액 입력 : ");
 				spendings[entryCount][1] = sc.nextInt();
@@ -51,24 +51,136 @@ public class Analyzer {
 		}
 //		송민진 수정 끝
 		
-		
-		// 여기선 수정
 		// 날짜, 카테고리, 금액 배열 선언
-		int[] dateArray = new int[MAX_ENTRY];
-		int[] catArray = new int[MAX_ENTRY];
-		int[] priceArray = new int[MAX_ENTRY];
+		int[] catArray = new int[MAX_ENTRY]; 	//카테고리 배열
+		int[] priceArray = new int[MAX_ENTRY];	//금액 배열
 		for (int i = 0; i < MAX_ENTRY; i++) {
-			dateArray[i] = spendings[i][0];
-			catArray[i] = spendings[i][1];
-			priceArray[i] = spendings[i][2];
+			catArray[i] = spendings[i][0];		//전체 지출목록에서 카테고리 저장
+			priceArray[i] = spendings[i][1];		//전체 지출목록에서 전체금액 저장
 		}
-		// 날짜, 카테고리, 금액 배열 출력
-		System.out.println("날짜\n" + Arrays.toString(dateArray));
-		System.out.println("카테고리\n" + Arrays.toString(catArray));
-		System.out.println("금액\n" + Arrays.toString(priceArray));
+		
+		// 총 지출금액 연산
+		int totalSpending = 0;					//전체 지출금액을 합할 값이 들어갈 변수
+		for (int price : priceArray) {
+			totalSpending += price;
+		}
+		
+		// 카테고리별 총 금액 연산
+		int cat1Spending = 0;	//카테고리1의 총 지출
+		int cat2Spending = 0;	//카테고리2의 총 지출
+		int cat3Spending = 0;	//카테고리3의 총 지출
+		int cat4Spending = 0;	//카테고리4의 총 지출
+		
+		//성인수정
+		int[] numCount = new int[4]; 	//입력하는 숫자 받을 배열
+		int highindex = 0; 				//인덱스 번호 받을 배열
+		int bcount = numCount[0]; 		// 입력 많은 높은숫자 받을 변수
+		//성인수정
+		for (int[] spending : spendings) {
+			switch(spending[0]) {
+			case 1:
+				cat1Spending += spending[1];
+				numCount[0]++;//성인추가
+				break;
+			case 2:
+				cat2Spending += spending[1];
+				numCount[1]++;//성인추가
+				break;
+			case 3:
+				cat3Spending += spending[1];
+				numCount[2]++;//성인추가
+				break;
+			case 4:
+				cat4Spending += spending[1];
+				numCount[3]++;//성인추가
+				break;
+			default:
+				break;
+			}
+		}
+
+		// 받은 배열에서 받은 숫자중 높은 숫자 입력 받은 배열 
+		// 입력 받은 숫자 -성인추가
+		for(int i=0; i < numCount.length; i++) {
+			if (numCount[i] > bcount) {
+				bcount = numCount[i];
+				highindex=i+1;
+			}
+		}
+		//가장 자주 지출한 항목 구하기
+		String cat = "";		//가장 자주 지줄한 항목 저장 변수
+		switch(highindex) {
+		case 1 -> cat = "식비";
+		case 2 -> cat = "교통";
+		case 3 -> cat = "쇼핑";
+		case 4 -> cat = "기타";
+		default -> cat = "";
+		}
+		//=======결과 출력=======
+		System.out.println("\n일자 : <"+date+"> 소비분석");
+		
+		// 총 지출금액 출력
+		System.out.println("총 지출 "+entryCount+"건, 총 지출금액 : " + totalSpending);
+		System.out.println();
+		
+		// 카테고리별 총 지출금액
+		System.out.println("식비 지출금액 : " + cat1Spending);
+		System.out.println("교통 지출금액 : " + cat2Spending);
+		System.out.println("쇼핑 지출금액 : " + cat3Spending);
+		System.out.println("기타 지출금액 : " + cat4Spending);
+		System.out.println();
+		
+		//소비횟수와 소비한 카테고리 숫자 -성인추가 
+		System.out.println("자주 소비하는곳은 " + cat + "입니다. 총"+ bcount +"번 소비 하였습니다");
+		//소비항목 중 가장 많은 금액인 항목과 금액 출력
+		int[] max = {cat1Spending, cat2Spending, cat3Spending, cat4Spending};
+		//작은 금액부터 큰 금액으로 정렬
+		Arrays.sort(max);
+		//가장 많은 금액을 사용한 소비항목을 담을 변수
+		String bestCat = "";
+		if(max[3]==cat1Spending) {
+			bestCat = "식비";
+		}else if(max[3]==cat2Spending) {
+			bestCat = "교통";
+		}else if(max[3]==cat3Spending) {
+			bestCat = "쇼핑";
+		}else if(max[3]==cat4Spending) {
+			bestCat = "기타";
+		}
+		//가장 많은 금액을 사용한 소비항목 출력
+		System.out.println("소비항목 중 가장 많은 금액을 지출한 항목은 "+bestCat+"이고, 예산 금액의 약"+(int)((double)max[3]/budget*100)+"%를 차지합니다");
+		System.out.println();
+		
+		String spendMsg = (budget < totalSpending) ? (int) (totalSpending - budget) + "원 초과하셨습니다" : (int) (budget - totalSpending) + "원 절약하셨습니다";
+		System.out.print("[예산금액 : " + budget + "원, 총 지출금액 : " + totalSpending + "원]\n");
+		System.out.print("→ 예상금액에서 "+spendMsg);
+		System.out.println();
 		
 		// 저장된 지출 내역 출력
-		System.out.println("지출내역\n" + Arrays.deepToString(spendings));
+//		System.out.println("지출내역\n" + Arrays.deepToString(spendings));
+		System.out.println();
+		System.out.println("=====전체 지출 내역=====");
+		for (int i = 0; i < entryCount; i++) {
+			String categoryName = "";
+			switch(spendings[i][0]) {
+			case 1:
+				categoryName = "식비";
+				break;
+			case 2:
+				categoryName = "교통";
+				break;
+			case 3:
+				categoryName = "쇼핑";
+				break;
+			case 4:
+				categoryName = "기타";
+				break;
+			default: 
+				categoryName = "기타";
+				break;
+			}
+			System.out.printf("%d.%s, 금액 : %d\n", i + 1, categoryName, spendings[i][1]);
+		}
 		sc.close();
 	}
 }
