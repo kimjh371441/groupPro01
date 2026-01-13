@@ -3,7 +3,7 @@ package groupPro01;
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class Analyzer {
+public class Analyser {
 	public static void main(String[] args) {
 //		송민진 시작
 		// 지출 내역 입력을 위한 기능
@@ -83,6 +83,7 @@ public class Analyzer {
 		
 	}
 
+
 }
 
 
@@ -97,4 +98,7 @@ public class Analyzer {
 
 
 
+
+
+}
 
