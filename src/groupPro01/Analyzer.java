@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Analyzer {
 	public static void main(String[] args) {
-//		송민진 시작
+		// 송민진 시작
 		// 지출 내역 입력을 위한 기능
 		
 		// 최대 입력 갯수 상수로 선언 (30)
@@ -50,6 +50,8 @@ public class Analyzer {
 			}
 		}
 //		송민진 수정 끝
+	
+//		윤철민 시작
 		
 		// 날짜, 카테고리, 금액 배열 선언
 		int[] catArray = new int[MAX_ENTRY]; 	//카테고리 배열
@@ -148,7 +150,7 @@ public class Analyzer {
 			bestCat = "기타";
 		}
 		//가장 많은 금액을 사용한 소비항목 출력
-		System.out.println("소비항목 중 가장 많은 금액을 지출한 항목은 "+bestCat+"이고, 예산 금액의 약"+(int)((double)max[3]/budget*100)+"%를 차지합니다");
+		System.out.println("소비항목 중 가장 많은 금액을 지출한 항목은 "+bestCat+"이고, 전체 지출의 약"+(int)((double)max[3]/totalSpending*100)+"%를 차지합니다");
 		System.out.println();
 		
 		String spendMsg = (budget < totalSpending) ? (int) (totalSpending - budget) + "원 초과하셨습니다" : (int) (budget - totalSpending) + "원 절약하셨습니다";
@@ -179,7 +181,7 @@ public class Analyzer {
 				categoryName = "기타";
 				break;
 			}
-			System.out.printf("%d.%s, 금액 : %d\n", i + 1, categoryName, spendings[i][1]);
+			System.out.printf("%d.%s : %d\n", i + 1, categoryName, spendings[i][1]);
 		}
 		sc.close();
 	}
