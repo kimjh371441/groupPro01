@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class AnalyzerMain {
 	public static void main(String[] args) {
+		// Analyzer_v2 클래스의 객체 생성
+		Analyzer_v2 a2 = new Analyzer_v2();
+		
 		// 지출 내역 입력을 위한 기능
 
 		// 최대 입력 갯수 상수로 선언 (30)
@@ -46,6 +49,15 @@ public class AnalyzerMain {
 			default: // 기본 옵션, 1번과 2번이 아닌 경우 오류 메시지 출력
 				System.out.println("잘 못 입력하였습니다.");
 			}
+			
 		}
+		a2.printDateCount(date);
+		a2.printTotalCount(entryCount);
+		int total = a2.getTotal(entryCount, spendings);
+		System.out.println();
+		a2.printOverbudget(budget, total);
+		a2.printAnalysis(budget, entryCount, total, spendings);
+		a2.printAllSpending(entryCount, spendings);
+		
 	}
 }
