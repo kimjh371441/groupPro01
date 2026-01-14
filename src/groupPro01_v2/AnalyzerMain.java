@@ -58,6 +58,7 @@ public class AnalyzerMain {
 		a2.printOverbudget(budget, total);
 		a2.printAnalysis(budget, entryCount, total, spendings);
 		a2.printAllSpending(entryCount, spendings);
+		a2.printRemainder(budget, total);
 		
 	}
 }

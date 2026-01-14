@@ -164,4 +164,8 @@ public class Analyzer_v2 {
 			System.out.printf("%d.%s : %d\n", i + 1, categoryName, spendings[i][1]);
 		}
 	}
+	
+	void printRemainder(int budget, int total) {
+		System.out.printf("\n잔액은 %d원 입니다", budget - total);
+	}
 }
