@@ -47,5 +47,47 @@ public class AnalyzerMain {
 				System.out.println("잘 못 입력하였습니다.");
 			}
 		}
+		Analyzer_v2 a2 = new Analyzer_v2();
+		
+		System.out.println("\n일자 : <"+date+"> 소비분석");
+		
+		// 총 지출금액 출력
+		System.out.println("총 지출 "+entryCount+"건, 총 지출금액 : " + a2.totalSending(MAX_ENTRY, spendings));
+		System.out.println();
+		
+		a2.consumAnalyzer(MAX_ENTRY, spendings);
+		
+		
+		String spendMsg = (budget < a2.totalSending(MAX_ENTRY, spendings)) ? (int) (a2.totalSending(MAX_ENTRY, spendings) - budget) + "원 초과하셨습니다" : (int) (budget - a2.totalSending(MAX_ENTRY, spendings)) + "원 절약하셨습니다";
+		System.out.print("[예산금액 : " + budget + "원, 총 지출금액 : " + a2.totalSending(MAX_ENTRY, spendings) + "원]\n");
+		System.out.print("→ 예상금액에서 "+spendMsg);
+		System.out.println();
+		
+		// 저장된 지출 내역 출력
+//		System.out.println("지출내역\n" + Arrays.deepToString(spendings));
+		System.out.println();
+		System.out.println("=====전체 지출 내역=====");
+		for (int i = 0; i < entryCount; i++) {
+			String categoryName = "";
+			switch(spendings[i][0]) {
+			case 1:
+				categoryName = "식비";
+				break;
+			case 2:
+				categoryName = "교통";
+				break;
+			case 3:
+				categoryName = "쇼핑";
+				break;
+			case 4:
+				categoryName = "기타";
+				break;
+			default: 
+				categoryName = "기타";
+				break;
+			}
+			System.out.printf("%d.%s : %d\n", i + 1, categoryName, spendings[i][1]);
+		}
+		sc.close();
 	}
 }
