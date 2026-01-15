@@ -47,5 +47,14 @@ public class AnalyzerMain {
 				System.out.println("잘 못 입력하였습니다.");
 			}
 		}
-	}
+	
+	 	// new로 Analyzer_v2 클래스 객체 생성
+	 	// total 메소드 사용하기 위해 
+	    Analyzer_v2 analyzer = new Analyzer_v2();
+	    // total 메소드 호출, spendings 행, spendings 전체 
+	    analyzer.total(spendings.length, spendings);
+		}
+
+	
 }
+
