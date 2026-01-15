@@ -14,7 +14,24 @@ public class Analyzer_v2 {
 	// 총금액
 	// 입력 : 총 건수, 2차원 배열 저장한 지출 내역
 	// 리턴 값 : 총 금액
-
+	// 총 지출금액 연산
+	// 필드
+	int entryCount; //입력된 값
+	int [][] spendings; //소비 내역을 저장할 2차원 정수형 배열
+	//생성자
+	Analyzer_v2(int entryCount, int[][] spendings) {
+		this.entryCount = entryCount;
+		this.spendings = spendings;
+	}
+	// 총 지출금액 연산
+	int plustotalSpending () {
+		int totalSpending = 0;
+		
+		for (int i =0; i < entryCount; i++) {
+			totalSpending += spendings[i][1];
+		}
+		return totalSpending;
+	}
 	// 예산초과여부 출력
 	// 입력 : 지출 금액, 예산
 	// 출력 : 총 지출 금액과 예산을 비교했을때 금액

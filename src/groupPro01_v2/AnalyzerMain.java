@@ -47,5 +47,10 @@ public class AnalyzerMain {
 				System.out.println("잘 못 입력하였습니다.");
 			}
 		}
+		
+        Analyzer_v2 analyzer = new Analyzer_v2(entryCount, spendings);
+        int totalSpending = analyzer.plusTotalSpending();
+
+        System.out.println("총 지출 금액 : " + totalSpending);
 	}
 }
