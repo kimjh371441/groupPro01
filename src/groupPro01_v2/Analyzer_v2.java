@@ -1,30 +1,49 @@
 package groupPro01_v2;
 
-import java.util.Arrays;
-
 public class Analyzer_v2 {
-	// 필드
+/*	필드 
+	총금액
+	입력 : 총 건수, 2차원 배열 저장한 지출 내역
+	리턴 값 : 총 금액			*/
+	
+	// 필드, catArray, priceArray
+	int[] catArray;
+	int[] priceArray;
+	// total 메소드 선언
+	// 반환값 int
+	int total(int entryCount, int[][] spendings) {
+	        // 필드 배열 초기화, new로 배열 공간 생
+	        catArray = new int[entryCount];
+	        priceArray = new int[entryCount];
+	        // 데이터 저장, 2차원 배열 spendings를 catArray, priceArray로 나눠서 저장 
+	        for (int i = 0; i < entryCount; i++) {
+	            catArray[i] = spendings[i][0];
+	            priceArray[i] = spendings[i][1];
+	        }
+	        // 총 지출 금액 계산
+	        // priceArray에 있는 모든 지출 금액 합산
+	        // total 변수에 저장 
+	        int total = 0;
+	        for (int price : priceArray) {
+	            total += price;
+	        }
+	        // 총 지출 금액 출력
+	        System.out.println("총 지출 금액은 " + total + "원 입니다.");
+	        // 리턴값
+	        // total 
+	        return total;
+			}
+		
+		}		
+	
+	
+	
+	
+	
+	
+	
+	
 
-	// 메소드
 
-	// 날짜 출력 및 총 지출 건수 출력
-	// 입력 : 날짜, 총 지출건수
-	// 출력 : 첫 줄: 일자 : < 날짜 > 소비분석
+			
 
-	// 총금액
-	// 입력 : 총 건수, 2차원 배열 저장한 지출 내역
-	// 리턴 값 : 총 금액
-
-	// 예산초과여부 출력
-	// 입력 : 지출 금액, 예산
-	// 출력 : 총 지출 금액과 예산을 비교했을때 금액
-
-	// 소비패턴분석(제일 많이 소비한 카테고리, 가장 빈번하게 지출한 카테고리)
-	// 입력 : 지출 내역 2차원 배열
-	// 출력 : 카테고리별 금액 출력, 제일 많이 소비한 카테고리 및 비율, 가장 빈번하게 지출한 카테고리
-
-	// 전체소비내역 출력
-	// 입력 : 총 지출내역 수, 지출 내역 2차원 배열
-	// 출력 : 각 지출내역 (카테고리 : 금액)
-
-}
