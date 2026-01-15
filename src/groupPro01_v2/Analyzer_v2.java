@@ -165,6 +165,9 @@ public class Analyzer_v2 {
 		}
 	}
 	
+	// 간단한 잔액 출력 메소드
+	// 입력 : 입력된 정수 예산, 계산된 총 지출금액
+	// 출력 : 잔액 표기 메시지
 	void printRemainder(int budget, int total) {
 		System.out.printf("\n잔액은 %d원 입니다", budget - total);
 	}
